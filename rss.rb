@@ -67,6 +67,9 @@ end
 
 def retag_metadata(item, filename)
   puts "Resetting date to #{item.pubDate.iso8601[..18]}"
+  # We need to do this in two calls, because for some reason trying to modify
+  # the recording date while retagging from v2.3 to v2.4 causes the tag version
+  # to update without changing the recording date
   system(
     'eyeD3',
     '--to-v2.4',
